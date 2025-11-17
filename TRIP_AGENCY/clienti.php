@@ -10,23 +10,44 @@
 
             <form action="" method="POST">
 
-                <div class="row g-2">
-                    <label for="">Nome : </label>
-                    <div class="col"><input type="text" name="nome" class="form-control" placeholder="Inserisci il nome del cliente..." required></div>
-                    <label for="">Cognome : </label>
-                    <div class="col"><input type="text" name="cognome" class="form-control" placeholder="Inserisci il cognome del cliente..." required></div>
-                    <label for="">Email : </label>
-                    <div class="col"><input type="text" name="email" class="form-control" placeholder="Inserisci l email del cliente..." required></div>
-                    <label for="">Telefono : </label>
-                    <div class="col"><input type="text" name="telefono" class="form-control" placeholder="Inserisci il telefono del cliente..." required></div>
-                    <label for="">Nazione : </label>
-                    <div class="col"><input type="text" name="nazione" class="form-control" placeholder="Inserisci la nazione del cliente..." required></div>
-                    <label for="">Codice Fiscale : </label>
-                    <div class="col"><input type="text" name="codice_fiscale" class="form-control" placeholder="Inserisci il codice fiscale del cliente..." required></div>
-                    <label for="">Documento : </label>
-                    <div class="col"><input type="text" name="documento" class="form-control" placeholder="Inserisci il codice del documento del cliente..." required></div>
+                <div class="row g-3">
                     
-                    <div class="col">
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Nome : </label>
+                        <input type="text" name="nome" class="form-control" placeholder="Inserisci il nome del cliente..." required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Cognome : </label>
+                        <input type="text" name="cognome" class="form-control" placeholder="Inserisci il cognome del cliente..." required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Email : </label>
+                        <input type="text" name="email" class="form-control" placeholder="Inserisci l email del cliente..." required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Telefono : </label>
+                        <input type="text" name="telefono" class="form-control" placeholder="Inserisci il telefono del cliente..." required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Nazione : </label>
+                        <input type="text" name="nazione" class="form-control" placeholder="Inserisci la nazione del cliente..." required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Codice Fiscale : </label>
+                        <input type="text" name="codice_fiscale" class="form-control" placeholder="Inserisci il codice fiscale del cliente..." required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Documento : </label>
+                        <input type="file" name="documento" class="form-control" placeholder="Inserisci il codice del documento del cliente..." required>
+                    </div>
+                    
+                    <div class="col-12">
                         <button class="btn btn-success" type="submit">Salva</button>
                     </div>
 
@@ -60,22 +81,11 @@
         <tbody>
 
 
-
-
-
-
-
-
         </tbody>
 
-
-
-
-
-
-
-
     </table>
+
+
 
 
 <?php include 'footer.php'; ?>
