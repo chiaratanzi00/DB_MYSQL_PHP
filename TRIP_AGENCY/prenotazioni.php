@@ -11,37 +11,48 @@
             <form action="" method="POST">
 
                 <div class="row g-3">
-
+                    
                     <div class="col-md-6">
-                        <label style="font-weight: 600;" for="">Data prenotazione : </label>
-                        <input type="date" name="data_prenotazione" class="form-control" placeholder="Inserisci la data di prenotazione..." required>
+                        <label style="font-weight: 600;" for="">Seleziona Cliente : </label>
+                        <input type="text" name="cliente" class="form-control" placeholder="" required>
                     </div>
-
+                    
                     <div class="col-md-6">
-                        <label style="font-weight: 600;" for="">Acconto : </label>
-                        <input type="number" name="acconto" class="form-control" placeholder="Inserisci acconto..." required>
+                        <label style="font-weight: 600;" for="">Seleziona Destinazione : </label>
+                        <input type="text" name="destinazione" class="form-control" placeholder="" required>
                     </div>
-
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Data Prenotazione : </label>
+                        <input type="date" name="dataprenotazione" class="form-control" placeholder="" required>
+                    </div>
+                    
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Numero persone : </label>
-                        <input type="number" name="numero_persone" class="form-control" placeholder="Inserisci il numero delle persone..." required>
+                        <input type="number" name="num_persone" class="form-control" placeholder="es.: 10" required>
                     </div>
-
+                    
+                
+                    
                     <div class="col-md-6">
-                        <label style="font-weight: 600;" for="">Assicurazione: </label>
-                        <input type="number" name="assicurazione" class="form-control" placeholder="Inserisci se il cliente ha l'assicurazione..." required>
+                        <label style="font-weight: 600;" for="">Assicurazione : </label>
+                        <input type="checkbox" name="assicurazione"  placeholder="Assicurazione del cliente..." required>
                     </div>
-
+                    
+                    <div class="col-md-6">
+                        <label style="font-weight: 600;" for="">Acconto : </label>
+                        <input type="number" name="acconto" class="form-control" placeholder="Acconto del cliente..." required>
+                    </div>
+                    
                     <div class="col-12">
-                        <button class="btn btn-success" type="submit">Invia</button>
+                        <button class="btn btn-success" type="submit">Salva</button>
                     </div>
-
-                   
 
                 </div>
             </form>
         </div>
     </div>
+
 
     <!--Tabella-->
     <table class="table table-striped">
@@ -51,22 +62,26 @@
             <tr>
 
                 <th>ID</th>
+                <th>Cliente</th>
+                <th>Destinazione</th>
+                <th>Data</th>
+                <th>Persone</th>
+                <th>Assicurazione</th>
                 <th>Acconto</th>
-                <th>Numero persone</th>
-                <th>Assicrazione</th>
-                
+                <th>Azioni</th>
 
             </tr>
 
         </thead>
 
         <tbody>
-          <!-- Qui verranno inserite le righe dal database -->
+
+
+        
+
         </tbody>
 
     </table>
 
 
-
-
-<?php include 'footer.php'; ?>    
+<?php include 'footer.php'; ?>
