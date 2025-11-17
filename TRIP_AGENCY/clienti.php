@@ -12,12 +12,7 @@
 
 
 
-
-
-
-
     //LOGICA DI AGGIUNTA
- 
     //chiamata POST che prende il gancio del bottone aggiugi del form, prendendo i valori inseriti nei vari campi
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['aggiungi'])){
 
@@ -36,18 +31,53 @@
     }
     
 
-    //LOGICA DI AGGIUNTA
+
+
+
+    //LOGICA DI MODIFICA
+    $cliente_modifica = null;
+
+    if (isset($_GET['modifica'])){
+
+
+        $res = $conn->query("SELECT * FROM clienti WHERE id = " . intval($_GET['modifica']));
+
+        $cliente_modifica = $res->fetch_assoc();
+
+    }
+
+
+
+
+
+    //MODIFICA DEL DATO, SALVATAGGIO 
+    if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
+
+        //PREPARE
+        $stmt = $conn->prepare("UPDATE clienti SET nome=?, cognome=?, email=?, telefono=?, nazione=?, codice_fiscale=?, documento=? WHERE id=?");
+        //BINDING
+        $stmt->bind_param("sssssssi" ,$_POST['nome'],$_POST['cognome'],$_POST['email'],$_POST['telefono'],$_POST['nazione'],$_POST['codice_fiscale'],$_POST['documento'], $_POST['id']);
+        //ESECUZIONE QUERY
+        $stmt->execute();
+        //messaggio
+        echo "<div class='alert alert-info'>Cliente Modificato correttamente</div>";
+    }
+
+
+
+
+
+    //CANCELLAZIONE CLIENTE
+    if(isset($_GET['elimina'])){
+
+        $id = intval($_GET['elimina']);
+        $conn->query("DELETE FROM clienti WHERE id = $id");
+
+        echo "<div class='alert alert-info'>Cliente Cancellato correttamente</div>";
+    }
 
     
-
- 
- 
  ?>
-
-
-
-
-
 
 
 
@@ -57,50 +87,92 @@
 
     <!--Form-->
     <div class="card mb-4">
-
         <div class="card-body">
-
             <form action="" method="POST">
+
+                <?php if($cliente_modifica): ?>
+                
+                    <input type="hidden" name="id" value="<?= $cliente_modifica['id'] ?>">
+
+                <?php endif; ?>
 
                 <div class="row g-3">
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Nome : </label>
-                        <input type="text" name="nome" class="form-control" placeholder="es.: Mario" required>
+                        
+                        <!--con value prendo il valore del campo inserito-->
+                        <input type="text" name="nome" class="form-control" placeholder="es.: Mario"
+                        
+                        
+                        value="<?= $cliente_modifica['nome'] ?? ''?>"
+                        
+                        required>
                     </div>
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Cognome : </label>
-                        <input type="text" name="cognome" class="form-control" placeholder="es.: Rossi" required>
+                        <input type="text" name="cognome" class="form-control" placeholder="es.: Rossi" 
+                        
+                        value="<?= $cliente_modifica['cognome'] ?? ''?>"
+
+                        required>
                     </div>
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Email : </label>
-                        <input type="text" name="email" class="form-control" placeholder="es.: mario.rossi@mail.it" required>
+                        <input type="text" name="email" class="form-control" placeholder="es.: mario.rossi@mail.it" 
+                        
+                        value="<?= $cliente_modifica['email'] ?? ''?>"
+                        
+                        required>
                     </div>
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Telefono : </label>
-                        <input type="text" name="telefono" class="form-control" placeholder="es.: 393406587398" required>
+                        <input type="text" name="telefono" class="form-control" placeholder="es.: 393406587398" 
+                        
+                        value="<?= $cliente_modifica['telefono'] ?? ''?>"
+                        
+                        required>
                     </div>
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Nazione : </label>
-                        <input type="text" name="nazione" class="form-control" placeholder="es.: Italia" required>
+                        <input type="text" name="nazione" class="form-control" placeholder="es.: Italia" 
+                        
+                        value="<?= $cliente_modifica['nazione'] ?? ''?>"
+                        
+                        required>
                     </div>
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Codice Fiscale : </label>
-                        <input type="text" name="codice_fiscale" class="form-control" placeholder="Codice Fiscale di 16 cifre..." required>
+                        <input type="text" name="codice_fiscale" class="form-control" placeholder="Codice Fiscale di 16 cifre..." 
+                        
+                        value="<?= $cliente_modifica['codice_fiscale'] ?? ''?>"
+                        
+                        required>
                     </div>
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Documento : </label>
-                        <input type="file" name="documento" class="form-control" placeholder="Inserisci il codice del documento del cliente..." >
+                        <input type="file" name="documento" class="form-control" placeholder="Inserisci il codice del documento del cliente..." 
+                        
+                        value="<?= $cliente_modifica['documento'] ?? ''?>"
+                        >
+
                     </div>
                     
                     <div class="col-12">
-                        <button name="aggiungi" class="btn btn-success" type="submit">Salva</button>
+                        
+                        <button 
+                            name="<?= $cliente_modifica ? 'salva_modifica' : 'aggiungi' ?>" 
+                            class="<?= $cliente_modifica ? 'warning' : 'success' ?>" 
+                            type="submit">
+                            <?= $cliente_modifica ? 'Salva' : 'Aggiungi' ?>
+                        </button>
+                    
                     </div>
 
                 </div>
