@@ -16,7 +16,7 @@
 
 
 
-
+    //LOGICA DI AGGIUNTA
  
     //chiamata POST che prende il gancio del bottone aggiugi del form, prendendo i valori inseriti nei vari campi
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['aggiungi'])){
@@ -34,7 +34,12 @@
 
 
     }
- 
+    
+
+    //LOGICA DI AGGIUNTA
+
+    
+
  
  
  ?>
@@ -113,7 +118,7 @@
         $totalPages = ceil($total / $perPagina); // il numero di pagine della navigazione
 
         //QUERY PER ordinare i dati in modo DECRESCENTE IMPAGINATI PER valore di "$perPagina" 
-        $result = $conn->query("SELECT * FROM clienti ORDER BY id DESC LIMIT $perPagina OFFSET $offset");
+        $result = $conn->query("SELECT * FROM clienti ORDER BY id ASC LIMIT $perPagina OFFSET $offset");
 
     ?>
 
@@ -144,8 +149,28 @@
         <!--Corpo tabella-->
         <tbody>
 
+            <?php while ($row = $result->fetch_assoc()) : ?>
+                
+                <tr>
+                    <td><?= $row['id'] ?></td>
+                    <td><?= $row['nome'] ?></td>
+                    <td><?= $row['cognome'] ?></td>
+                    <td><?= $row['email'] ?></td>
+                    <td><?= $row['telefono'] ?></td>
+                    <td><?= $row['nazione'] ?></td>
+                    <td><?= $row['codice_fiscale'] ?></td>
+                    <td><?= $row['documento'] ?></td>
+                    <td>
+
+                        <a class="btn btn-sm btn-warning" href="?modifica=<?= $row['id']  ?>">Modifica</a>
+                        <a class="btn btn-sm btn-danger" href="?elimina=<?= $row['id']  ?>" onclick="return confirm ('Sicuro?')">Elimina</a>
 
 
+                    </td>
+                </tr>
+
+
+            <?php endwhile; ?>
 
         </tbody>
 
