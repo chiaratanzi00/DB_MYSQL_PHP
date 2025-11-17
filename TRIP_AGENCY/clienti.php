@@ -1,6 +1,22 @@
 <?php 
     include 'header.php'; 
     include 'db.php'; 
+
+
+    //Logica per impaginazione
+    $perPagina = 10;  // n elementi mostrati per pagina
+    $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+    $offset = ($page - 1) * $perPagina;
+
+
+
+
+
+
+
+
+
+
  
     //chiamata POST che prende il gancio del bottone aggiugi del form, prendendo i valori inseriti nei vari campi
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['aggiungi'])){
@@ -90,7 +106,16 @@
 
 
     <!--LOGICA RENDER -->
-    
+    <?php
+
+        //vado a conteggiare il totale dei clienti con query
+        $total = $conn->query("SELECT COUNT(*) as t FROM clienti")->fetch_assoc()['t'];
+        $totalPages = ceil($total / $perPagina); // il numero di pagine della navigazione
+
+        //QUERY PER ordinare i dati in modo DECRESCENTE IMPAGINATI PER valore di "$perPagina" 
+        $result = $conn->query("SELECT * FROM clienti ORDER BY id DESC LIMIT $perPagina OFFSET $offset");
+
+    ?>
 
 
 
@@ -100,7 +125,7 @@
     <table class="table table-striped">
 
         <thead>
-
+            <!--Intestazione tabella-->
             <tr>
 
                 <th>ID</th>
@@ -116,7 +141,7 @@
             </tr>
 
         </thead>
-
+        <!--Corpo tabella-->
         <tbody>
 
 
@@ -126,5 +151,24 @@
 
     </table>
 
+
+
+    <!--Paginazione-->
+    <nav>
+
+        <ul class="pagination">
+
+            <?php for($i = 1; $i <= $totalPages; $i++ ) : ?>
+
+                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                    <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                </li>   
+
+            <?php endfor; ?>
+
+
+
+        </ul>
+    </nav>
 
 <?php include 'footer.php'; ?>
