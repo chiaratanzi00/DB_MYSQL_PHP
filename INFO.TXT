@@ -220,3 +220,20 @@ ID INT AUTO_INCREMENT PRIMARY KEY               ID INT AUTO_INCREMENT PRIMARY KE
 
                                                 id_appartamento INT 
                                                 FOREIGN KEY (id_appartamento) REFERENCES appartamenti(id);
+
+
+
+// JOIN TABELLE PRENOTAZIONI
+
+SELECT
+    ID -> Prenotazioni 
+    nome -> Clienti
+    cognome -> CLIENTE
+    citta -> Destinazione
+    paese -> Destinazione
+    dataprenotazione -> Prenotazione
+    numero_persone -> Prenotazione
+
+    JOIN METODO
+    Clienti Prenotazioni.ID_CLIENTE = CLIENTE.ID
+    Destinazioni Prenotazioni.ID_DESTINAZIONE = DESTINAZIONE.ID
