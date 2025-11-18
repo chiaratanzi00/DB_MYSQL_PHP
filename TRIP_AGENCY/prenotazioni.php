@@ -9,6 +9,9 @@
     $offset = ($page - 1) * $perPagina;
 
 
+    //QUERY PER ESTRARRE DATI PER SELECT DROPDOWN Clienti e Destinazioni
+    $clienti = $conn->query("SELECT id, nome, cognome FROM clienti");
+    $destinazioni = $conn->query("SELECT id, citta, paese FROM destinazioni");
 
 
 
@@ -100,9 +103,11 @@
                         <select name="id_cliente" class="form-select" required>
 
                             <option value="">Seleziona il cliente</option>
+                            <?php while ($c = $clienti->fetch_assoc()) : ?>
 
+                                <option value="<?= $c['id'] ?>"><?= $c['nome'] . ' ' . $c['cognome'] ?></option>
 
-
+                            <?php endwhile; ?>
                         </select>
                         
                     </div>
@@ -112,7 +117,13 @@
                         <select name="id_destinazione" class="form-select" required>
 
                             <option value="">Seleziona Destinazione</option>
+                            <?php while ($d = $destinazioni->fetch_assoc()) : ?>
 
+                                <option value="<?= $d['id'] ?>"><?= $d['citta'] . ' ' . $d['paese'] ?></option>
+
+
+
+                            <?php endwhile; ?>
                         </select>
 
 
@@ -151,7 +162,7 @@
                     </div>
                     
 
-                    
+
                     <div class="col-md-2">
                         <label style="font-weight: 600;" for="">Assicurazione: </label>
                         
