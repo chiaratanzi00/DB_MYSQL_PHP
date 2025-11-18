@@ -18,7 +18,7 @@ $stmt = $conn->prepare("INSERT INTO destinazioni
 ");
 
 //Binding dei parametri e tipizzo
-$stmt->bind_param("ssdssii",
+$stmt->bind_param("ssdssi",
         $_POST['citta'],
         $_POST['paese'],
         $_POST['prezzo'],
@@ -146,7 +146,7 @@ echo "<div class='alert alert-info'>Destinazione eliminata correttamente</div>";
                     
                     
                     <div class="col-12">
-                        <button name="<?= $destinazione_modifica ? 'salva_modifica' : 'aggiungi' ?>" class="<?= $destinazione_modifica ? 'warning' : 'success' ?>" 
+                        <button name="<?= $destinazione_modifica ? 'salva_modifica' : 'aggiungi' ?>" class="btn btn-<?= $destinazione_modifica ? 'warning' : 'success' ?>"
                         type="submit">
                         <?= $destinazione_modifica? 'Salva' : 'Aggiungi' ?>
                         </button>
