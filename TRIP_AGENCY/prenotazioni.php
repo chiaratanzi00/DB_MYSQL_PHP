@@ -114,18 +114,19 @@
                     
                     <div class="col-md-3">
                         <label style="font-weight: 600;" for="">Destinazione: </label>
-                        <select name="id_destinazione" class="form-select" required>
+                        <div class="wrapper">
+                            <select name="id_destinazione" class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
 
-                            <option value="">Seleziona Destinazione</option>
-                            <?php while ($d = $destinazioni->fetch_assoc()) : ?>
+                                <option value="">Seleziona Destinazione</option>
+                                <?php while ($d = $destinazioni->fetch_assoc()) : ?>
 
-                                <option value="<?= $d['id'] ?>"><?= $d['citta'] . ' ' . $d['paese'] ?></option>
+                                    <option value="<?= $d['id'] ?>"><?= $d['citta'] . ' ' . $d['paese'] ?></option>
 
 
 
-                            <?php endwhile; ?>
-                        </select>
-
+                                <?php endwhile; ?>
+                            </select>
+                        </div>    
 
 
                     </div>
