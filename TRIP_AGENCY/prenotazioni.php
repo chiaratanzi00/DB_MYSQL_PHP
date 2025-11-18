@@ -204,7 +204,7 @@
                         
                         <button 
                             name="<?= $prenotazione_modifica ? 'salva_modifica' : 'aggiungi' ?>" 
-                            class="<?= $prenotazione_modifica ? 'warning' : 'success' ?>" 
+                            class="btn <?= $prenotazione_modifica ? 'btn-warning' : 'btn-success' ?>" 
                             type="submit">
                             <?= $prenotazione_modifica ? 'Salva' : 'Aggiungi' ?>
                         </button>
@@ -215,16 +215,6 @@
             </form>
         </div>
     </div>
-
-
-
-    <!--LOGICA RENDER -->
-    <?php
-
-  
-
-    ?>
-
 
 
 

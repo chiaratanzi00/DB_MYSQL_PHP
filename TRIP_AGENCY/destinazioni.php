@@ -161,7 +161,7 @@
                         
                         <button 
                             name="<?= $destinazione_modifica ? 'salva_modifica' : 'aggiungi' ?>" 
-                            class="<?= $destinazione_modifica ? 'warning' : 'success' ?>" 
+                            class="btn <?= $destinazione_modifica ? 'btn-warning' : 'btn-success' ?>" 
                             type="submit">
                             <?= $destinazione_modifica ? 'Salva' : 'Aggiungi' ?>
                         </button>
