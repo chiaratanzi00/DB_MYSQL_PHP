@@ -13,7 +13,6 @@
     $clienti = $conn->query("SELECT id, nome, cognome FROM clienti");
     $destinazioni = $conn->query("SELECT id, citta, paese FROM destinazioni");
 
-    
 
 
     //LOGICA DI AGGIUNTA
@@ -36,6 +35,8 @@
 
 
 
+
+
     //LOGICA DI MODIFICA
     $prenotazione_modifica = null;
 
@@ -47,6 +48,10 @@
         $prenotazione_modifica = $res->fetch_assoc();
 
     }
+
+
+
+
 
     //MODIFICA DEL DATO, SALVATAGGIO 
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
@@ -62,7 +67,10 @@
     }
 
 
-//CANCELLAZIONE CLIENTE
+
+
+
+    //CANCELLAZIONE CLIENTE
     if(isset($_GET['elimina'])){
 
         $id = intval($_GET['elimina']);
@@ -71,12 +79,14 @@
         echo "<div class='alert alert-info'>Prenotazione Cancellata correttamente</div>";
     }
 
+
     //vado a conteggiare il totale dei clienti con query
     $total = $conn->query("SELECT COUNT(*) as t FROM prenotazioni")->fetch_assoc()['t'];
     $totalPages = ceil($total / $perPagina); // il numero di pagine della navigazione
 
     //QUERY PER ordinare i dati in modo DECRESCENTE IMPAGINATI PER valore di "$perPagina" 
     //$result = $conn->query("SELECT * FROM prenotazioni ORDER BY id ASC LIMIT $perPagina OFFSET $offset");
+
 
 
     //QUERY ASSOCIAZIONE JOIN TRA LE DUE TABELLE 
@@ -95,7 +105,11 @@
     
  ?>
 
- <h2>Prenotazioni</h2>
+
+
+
+
+<h2>Prenotazioni</h2>
 
     <!--Form-->
     <div class="card mb-4">
@@ -210,6 +224,8 @@
   
 
     ?>
+
+
 
 
 
