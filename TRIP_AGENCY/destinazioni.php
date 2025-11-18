@@ -18,7 +18,7 @@ $stmt = $conn->prepare("INSERT INTO destinazioni
 ");
 
 //Binding dei parametri e tipizzo
-$stmt->bind_param("ssssss",
+$stmt->bind_param("ssdssii",
         $_POST['citta'],
         $_POST['paese'],
         $_POST['prezzo'],
@@ -56,7 +56,7 @@ $stmt = $conn->prepare("UPDATE destinazioni
 );
 
 //BINDING
-$stmt->bind_param("ssssssi",
+$stmt->bind_param("ssdssii",
         $_POST['citta'],
         $_POST['paese'],
         $_POST['prezzo'],
