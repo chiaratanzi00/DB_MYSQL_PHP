@@ -3,7 +3,7 @@
     include 'db.php'; 
 
     //Logica per impaginazione
-    $perPagina = 10;  // n elementi mostrati per pagina
+    $perPagina = 5;  // n elementi mostrati per pagina
     $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
     $offset = ($page - 1) * $perPagina;
 
@@ -193,7 +193,7 @@
                     <td><?= $row['id'] ?></td>
                     <td><?= $row['citta'] ?></td>
                     <td><?= $row['paese'] ?></td>
-                    <td><?= $row['prezzo'] ?></td>
+                    <td><?= $row['prezzo'] ?>€</td>
                     <td><?= $row['data_partenza'] ?></td>
                     <td><?= $row['data_ritorno'] ?></td>
                     <td><?= $row['posti_disponibili'] ?></td>
