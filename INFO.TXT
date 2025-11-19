@@ -231,7 +231,7 @@ SELECT
     cognome -> CLIENTE
     citta -> Destinazione
     paese -> Destinazione
-    dataprenotazione -> Prenotazione
+    data_prenotazione -> Prenotazione
     numero_persone -> Prenotazione
 
     JOIN METODO

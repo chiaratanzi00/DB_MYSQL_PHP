@@ -18,10 +18,10 @@
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['aggiungi'])){
 
     //Preparo lo stato stmt -> statement 
-    $stmt = $conn->prepare("INSERT INTO prenotazioni (id_cliente, id_destinazione, dataprenotazione, acconto, numero_persone, assicurazione) 
+    $stmt = $conn->prepare("INSERT INTO prenotazioni (id_cliente, id_destinazione, data_prenotazione, acconto, numero_persone, assicurazione) 
                                 VALUES  (?, ?, ?, ?, ?, ?)");
     //Binding dei parametri e tipizzo
-    $stmt->bind_param("iisiii", $_POST['id_cliente'], $_POST['id_destinazione'], $_POST['dataprenotazione'],$_POST['acconto'], $_POST['numero_persone'], $_POST['assicurazione']);
+    $stmt->bind_param("iisiii", $_POST['id_cliente'], $_POST['id_destinazione'], $_POST['data_prenotazione'],$_POST['acconto'], $_POST['numero_persone'], $_POST['assicurazione']);
         
     //eseguo lo statement
     $stmt->execute();
@@ -47,9 +47,9 @@
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
 
         //PREPARE
-        $stmt = $conn->prepare("UPDATE prenotazioni SET id_cliente=?, id_destinazione=?, dataprenotazione=?, acconto=?, numero_persone=?, assicurazione=? WHERE id=?");
+        $stmt = $conn->prepare("UPDATE prenotazioni SET id_cliente=?, id_destinazione=?, data_prenotazione=?, acconto=?, numero_persone=?, assicurazione=? WHERE id=?");
         //BINDING
-        $stmt->bind_param("iisiiii" ,$_POST['id_cliente'],$_POST['id_destinazione'],$_POST['dataprenotazione'],$_POST['acconto'],$_POST['numero_persone'],$_POST['assicurazione'],$_POST['id']);
+        $stmt->bind_param("iisiiii" ,$_POST['id_cliente'],$_POST['id_destinazione'],$_POST['data_prenotazione'],$_POST['acconto'],$_POST['numero_persone'],$_POST['assicurazione'],$_POST['id']);
         //ESECUZIONE QUERY
         $stmt->execute();
         //messaggio
@@ -76,7 +76,7 @@
 
     //QUERY ASSOCIAZIONE JOIN TRA LE DUE TABELLE 
 
-    $stmt = $conn->prepare("SELECT p.id, c.nome, c.cognome, d.citta, d.paese, p.dataprenotazione, p.numero_persone, p.acconto, p.assicurazione
+    $stmt = $conn->prepare("SELECT p.id, c.nome, c.cognome, d.citta, d.paese, p.data_prenotazione, p.numero_persone, p.acconto, p.assicurazione
                             FROM prenotazioni p
                             JOIN clienti c ON p.id_cliente = c.id
                             JOIN destinazioni d ON p.id_destinazione = d.id
@@ -136,9 +136,9 @@
                     
                     <div class="col-md-3">
                         <label style="font-weight: 600;" for="">Data Prenotazione: </label>
-                        <input type="date" name="dataprenotazione" class="form-control" placeholder="" 
+                        <input type="date" name="data_prenotazione" class="form-control" placeholder="" 
                         
-                        value="<?= $prenotazione_modifica['dataprenotazione'] ?? ''?>"
+                        value="<?= $prenotazione_modifica['data_prenotazione'] ?? ''?>"
                         
                         required>
                     </div>
@@ -218,7 +218,7 @@
                     <td><?= $row['id'] ?></td>
                     <td><?= $row['nome'] . ' ' . $row['cognome'] ?></td>
                     <td><?= $row['citta'] ?></td>
-                    <td><?= $row['dataprenotazione'] ?></td>
+                    <td><?= $row['data_prenotazione'] ?></td>
                     <td><?= $row['acconto'] ?></td>
                     <td><?= $row['numero_persone'] ?></td>
                     <td><?= $row['assicurazione'] ?></td>
