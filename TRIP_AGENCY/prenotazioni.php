@@ -56,8 +56,7 @@
     //MODIFICA DEL DATO, SALVATAGGIO 
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
 
-
-        $assicurazione = isset($_POST['assicurazione']) ? 1 : 0;
+        $assicurazione = intval($_POST['assicurazione']);
 
         //PREPARE
         $stmt = $conn->prepare("UPDATE prenotazioni SET id_cliente=?, id_destinazione=?,  acconto=?, assicurazione=? WHERE id=?");
@@ -261,7 +260,7 @@
                     <td><?= $row['citta'] ?></td>
                     <td><?= $row['data_prenotazione'] ?></td>
                     <td><?= $row['acconto'] ?></td>
-                    <td><?= $row['assicurazione'] ?></td>
+                    <td><?= $row['assicurazione'] == 1 ? 'Presente' : 'Non presente' ?></td>
                     <td>
 
                         <a class="btn btn-sm btn-warning" href="?modifica=<?= $row['id']  ?>">Modifica</a>
