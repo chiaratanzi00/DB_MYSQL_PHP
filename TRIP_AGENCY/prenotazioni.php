@@ -118,7 +118,7 @@
                     
                     <div class="col-md-3">
                         <label style="font-weight: 600;" for="">Destinazione: </label>
-                        
+                            
                             <select name="id_destinazione" class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
 
                                 <option value="">Seleziona Destinazione</option>
