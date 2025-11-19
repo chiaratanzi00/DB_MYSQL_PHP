@@ -201,14 +201,17 @@
                         <label style="font-weight: 600;" for="">Assicurazione: </label>
                         
                         <!--Logica ternaria dato assicurazione booleano/ tinyInt su Mysql trattato come int in php-->
-                        <input type="checkbox"  name="assicurazione" 
+                        <select name="assicurazione" id="" class="form-select" required>
+
+                        <option value="1"<?= ($prenotazione_modifica && $prenotazione_modifica['assicurazione']) == 1 ? 'selected' : ''?>>SI</option>
+                        <option value="0"<?= ($prenotazione_modifica && $prenotazione_modifica['assicurazione']) == 0 ? 'selected' : ''?>>NO</option>              
                         
-                        
-                        value="1" <?= ($prenotazione_modifica['assicurazione'] ?? 0) ? '' : ''?>>
-                        
-                      
+                    </select>
+                       
                     </div>
                     
+
+
                     
                     <div class="col-md-12">
                         
