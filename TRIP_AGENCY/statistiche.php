@@ -5,8 +5,6 @@
 
 ?>
 
-
-
 <h2>Statistiche</h2>
 
 

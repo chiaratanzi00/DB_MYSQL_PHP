@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js" integrity="sha512-n/G+dROKbKL3GVngGWmWfwK0yPctjZQM752diVYnXZtD/48agpUKLIn0xDQL9ydZ91x6BiOmTIFwWjjFi2kEFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0081a7">
@@ -48,7 +49,3 @@
 </nav>
 
 <main class="container mt-4">
-
-
-
-

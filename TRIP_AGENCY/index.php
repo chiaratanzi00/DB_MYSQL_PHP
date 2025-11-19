@@ -1,7 +1,5 @@
 <?php include 'header.php'; ?>
 
-
-
     <div class="text-center py-5">
 
         <h1 class="display-5 hero-title">Benvenuti nella nostra Trip-Agency</h1>
@@ -14,7 +12,6 @@
 
         <img src="img.png" class="img-fluid"  alt="immagine viaggiatore" style="max-height: 300px;">
         <img src="img2.png" class="img-fluid" alt="immagine viaggiatore" style="max-height: 300px;">
-
 
     </div>
 
@@ -53,24 +50,5 @@
         </div>
    
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>

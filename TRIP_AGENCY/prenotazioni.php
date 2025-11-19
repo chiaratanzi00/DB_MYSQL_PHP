@@ -2,18 +2,14 @@
     include 'header.php'; 
     include 'db.php'; 
 
-
     //Logica per impaginazione
     $perPagina = 10;  // n elementi mostrati per pagina
     $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
     $offset = ($page - 1) * $perPagina;
 
-
     //QUERY PER ESTRARRE DATI PER SELECT DROPDOWN Clienti e Destinazioni
     $clienti = $conn->query("SELECT id, nome, cognome FROM clienti");
     $destinazioni = $conn->query("SELECT id, citta, paese FROM destinazioni");
-
-
 
     //LOGICA DI AGGIUNTA
     //chiamata POST che prende il gancio del bottone aggiugi del form, prendendo i valori inseriti nei vari campi
@@ -30,10 +26,7 @@
 
         echo "<div class='alert alert-success'>Prenotazione Aggiunta!</div>";
 
-
     }
-
-
 
 
 
@@ -48,10 +41,6 @@
         $prenotazione_modifica = $res->fetch_assoc();
 
     }
-
-
-
-
 
     //MODIFICA DEL DATO, SALVATAGGIO 
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
@@ -70,9 +59,6 @@
     }
 
 
-
-
-
     //CANCELLAZIONE CLIENTE
     if(isset($_GET['elimina'])){
 
@@ -82,15 +68,12 @@
         echo "<div class='alert alert-info'>Prenotazione Cancellata correttamente</div>";
     }
 
-
     //vado a conteggiare il totale dei clienti con query
     $total = $conn->query("SELECT COUNT(*) as t FROM prenotazioni")->fetch_assoc()['t'];
     $totalPages = ceil($total / $perPagina); // il numero di pagine della navigazione
 
     //QUERY PER ordinare i dati in modo DECRESCENTE IMPAGINATI PER valore di "$perPagina" 
     //$result = $conn->query("SELECT * FROM prenotazioni ORDER BY id ASC LIMIT $perPagina OFFSET $offset");
-
-
 
     //QUERY ASSOCIAZIONE JOIN TRA LE DUE TABELLE 
 
@@ -104,18 +87,8 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-
-
-
-
-
-
-
-
     
  ?>
-
-
 
 
 
@@ -175,15 +148,9 @@
 
                                 <?php endwhile; ?>
                             </select>
-                        </div>    
-
-
+                        </div>   
                     </div>
                     
-                   
-                    
-             
-
                      <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Acconto: </label>
                         <input type="number" name="acconto" class="form-control" placeholder="" 
@@ -193,20 +160,15 @@
                         required>
                     </div>
 
-                
-                    
-
-
+    
                     <div class="col-md-2">
                         <label style="font-weight: 600;" for="">Assicurazione: </label>
                         
                         <!--Logica ternaria dato assicurazione booleano/ tinyInt su Mysql trattato come int in php-->
                         <input type="checkbox"  name="assicurazione" 
                         
-                        
                         value="1" <?= ($prenotazione_modifica['assicurazione'] ?? 0) ? '' : ''?>>
                         
-                      
                     </div>
                     
                     
@@ -225,9 +187,6 @@
             </form>
         </div>
     </div>
-
-
-
 
     <!--Tabella-->
     <table class="table table-striped">
@@ -268,14 +227,11 @@
                     </td>
                 </tr>
 
-
             <?php endwhile; ?>
 
         </tbody>
 
     </table>
-
-
 
     <!--Paginazione-->
     <nav>
@@ -289,8 +245,6 @@
                 </li>   
 
             <?php endfor; ?>
-
-
 
         </ul>
     </nav>

@@ -2,15 +2,10 @@
     include 'header.php'; 
     include 'db.php'; 
 
-
     //Logica per impaginazione
     $perPagina = 10;  // n elementi mostrati per pagina
     $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
     $offset = ($page - 1) * $perPagina;
-
-
-
-
 
     //LOGICA DI AGGIUNTA
     //chiamata POST che prende il gancio del bottone aggiugi del form, prendendo i valori inseriti nei vari campi
@@ -27,27 +22,18 @@
 
         echo "<div class='alert alert-success'>Destinazione Aggiunta!</div>";
 
-
     }
     
-
-
-
-
     //LOGICA DI MODIFICA
     $destinazione_modifica = null;
 
     if (isset($_GET['modifica'])){
-
 
         $res = $conn->query("SELECT * FROM destinazioni WHERE id = " . intval($_GET['modifica']));
 
         $destinazione_modifica = $res->fetch_assoc();
 
     }
-
-
-
 
 
     //MODIFICA DEL DATO, SALVATAGGIO 
@@ -63,10 +49,6 @@
         echo "<div class='alert alert-info'>Destinazione Modificata correttamente</div>";
     }
 
-
-
-
-
     //CANCELLAZIONE CLIENTE
     if(isset($_GET['elimina'])){
 
@@ -78,10 +60,6 @@
 
     
  ?>
-
-
-
-
 
 <h2>Destinazioni</h2>
 
@@ -156,7 +134,6 @@
                     </div>
                     
                     
-                    
                     <div class="col-12">
                         
                         <button 
@@ -186,9 +163,6 @@
         $result = $conn->query("SELECT * FROM destinazioni ORDER BY id ASC LIMIT $perPagina OFFSET $offset");
 
     ?>
-
-
-
 
 
     <!--Tabella-->
@@ -228,7 +202,6 @@
                         <a class="btn btn-sm btn-warning" href="?modifica=<?= $row['id']  ?>">Modifica</a>
                         <a class="btn btn-sm btn-danger" href="?elimina=<?= $row['id']  ?>" onclick="return confirm ('Sicuro?')">Elimina</a>
 
-
                     </td>
                 </tr>
 
@@ -238,8 +211,6 @@
         </tbody>
 
     </table>
-
-
 
     <!--Paginazione-->
     <nav>
@@ -253,7 +224,6 @@
                 </li>   
 
             <?php endfor; ?>
-
 
 
         </ul>

@@ -2,15 +2,10 @@
     include 'header.php'; 
     include 'db.php'; 
 
-
     //Logica per impaginazione
     $perPagina = 10;  // n elementi mostrati per pagina
     $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
     $offset = ($page - 1) * $perPagina;
-
-
-
-
 
     //LOGICA DI AGGIUNTA
     //chiamata POST che prende il gancio del bottone aggiugi del form, prendendo i valori inseriti nei vari campi
@@ -27,13 +22,8 @@
 
         echo "<div class='alert alert-success'>Cliente Aggiunto!</div>";
 
-
     }
     
-
-
-
-
     //LOGICA DI MODIFICA
     $cliente_modifica = null;
 
@@ -45,10 +35,6 @@
         $cliente_modifica = $res->fetch_assoc();
 
     }
-
-
-
-
 
     //MODIFICA DEL DATO, SALVATAGGIO 
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
@@ -63,10 +49,6 @@
         echo "<div class='alert alert-info'>Cliente Modificato correttamente</div>";
     }
 
-
-
-
-
     //CANCELLAZIONE CLIENTE
     if(isset($_GET['elimina'])){
 
@@ -76,11 +58,7 @@
         echo "<div class='alert alert-info'>Cliente Cancellato correttamente</div>";
     }
 
-    
  ?>
-
-
-
 
 
 <h2>Clienti</h2>
@@ -103,7 +81,6 @@
                         
                         <!--con value prendo il valore del campo inserito-->
                         <input type="text" name="nome" class="form-control" placeholder="es.: Mario"
-                        
                         
                         value="<?= $cliente_modifica['nome'] ?? ''?>"
                         
@@ -174,13 +151,10 @@
                         </button>
                     
                     </div>
-
                 </div>
             </form>
         </div>
     </div>
-
-
 
     <!--LOGICA RENDER -->
     <?php
@@ -193,10 +167,6 @@
         $result = $conn->query("SELECT * FROM clienti ORDER BY id ASC LIMIT $perPagina OFFSET $offset");
 
     ?>
-
-
-
-
 
     <!--Tabella-->
     <table class="table table-striped">
@@ -233,22 +203,17 @@
                     <td><?= $row['codice_fiscale'] ?></td>
                     <td><?= $row['documento'] ?></td>
                     <td>
-
                         <a class="btn btn-sm btn-warning" href="?modifica=<?= $row['id']  ?>">Modifica</a>
                         <a class="btn btn-sm btn-danger" href="?elimina=<?= $row['id']  ?>" onclick="return confirm ('Sicuro?')">Elimina</a>
 
-
                     </td>
                 </tr>
-
 
             <?php endwhile; ?>
 
         </tbody>
 
     </table>
-
-
 
     <!--Paginazione-->
     <nav>
@@ -262,8 +227,6 @@
                 </li>   
 
             <?php endfor; ?>
-
-
 
         </ul>
     </nav>

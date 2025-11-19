@@ -1,5 +1,4 @@
 <?php
-
     //CONNESSIONE AL DB MYSQL usando MYSQLI
 
     //parametri di connessione al database
@@ -22,7 +21,6 @@
         //se la connessione fallisce  stampa un messaggi di errore e termina lo script
         die("Connessione fallita: " . mysqli_connect());
     }
-
 
     
 ?>
