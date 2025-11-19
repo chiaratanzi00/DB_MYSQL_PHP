@@ -1,0 +1,9 @@
+cosa posso RICERCARE nel file RICERCA ? 
+
+- citta
+- paese
+- prezzo minimo
+- prezzo massimo
+- data partenza
+- data ritorno
+- posti disponibili (Posti ancora disponibili?)
