@@ -2,14 +2,18 @@
     include 'header.php'; 
     include 'db.php'; 
 
+
     //Logica per impaginazione
     $perPagina = 10;  // n elementi mostrati per pagina
     $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
     $offset = ($page - 1) * $perPagina;
 
+
     //QUERY PER ESTRARRE DATI PER SELECT DROPDOWN Clienti e Destinazioni
     $clienti = $conn->query("SELECT id, nome, cognome FROM clienti");
     $destinazioni = $conn->query("SELECT id, citta, paese FROM destinazioni");
+
+
 
     //LOGICA DI AGGIUNTA
     //chiamata POST che prende il gancio del bottone aggiugi del form, prendendo i valori inseriti nei vari campi
@@ -26,7 +30,10 @@
 
         echo "<div class='alert alert-success'>Prenotazione Aggiunta!</div>";
 
+
     }
+
+
 
 
 
@@ -42,6 +49,10 @@
 
     }
 
+
+
+
+
     //MODIFICA DEL DATO, SALVATAGGIO 
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
 
@@ -49,14 +60,17 @@
         $assicurazione = isset($_POST['assicurazione']) ? 1 : 0;
 
         //PREPARE
-        $stmt = $conn->prepare("UPDATE prenotazioni SET id_cliente=?, id_destinazione=?, data_prenotazione=?, acconto=?, assicurazione=? WHERE id=?");
+        $stmt = $conn->prepare("UPDATE prenotazioni SET id_cliente=?, id_destinazione=?,  acconto=?, assicurazione=? WHERE id=?");
         //BINDING
-        $stmt->bind_param("iisiii" ,$_POST['id_cliente'],$_POST['id_destinazione'],$_POST['data_prenotazione'],$_POST['acconto'], $assicurazione, $_POST['id']);
+        $stmt->bind_param("iiiii" ,$_POST['id_cliente'],$_POST['id_destinazione'],$_POST['acconto'], $assicurazione, $_POST['id']);
         //ESECUZIONE QUERY
         $stmt->execute();
         //messaggio
         echo "<div class='alert alert-info'>Prenotazione Modificata correttamente</div>";
     }
+
+
+
 
 
     //CANCELLAZIONE CLIENTE
@@ -68,12 +82,15 @@
         echo "<div class='alert alert-info'>Prenotazione Cancellata correttamente</div>";
     }
 
+
     //vado a conteggiare il totale dei clienti con query
     $total = $conn->query("SELECT COUNT(*) as t FROM prenotazioni")->fetch_assoc()['t'];
     $totalPages = ceil($total / $perPagina); // il numero di pagine della navigazione
 
     //QUERY PER ordinare i dati in modo DECRESCENTE IMPAGINATI PER valore di "$perPagina" 
     //$result = $conn->query("SELECT * FROM prenotazioni ORDER BY id ASC LIMIT $perPagina OFFSET $offset");
+
+
 
     //QUERY ASSOCIAZIONE JOIN TRA LE DUE TABELLE 
 
@@ -87,8 +104,18 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
+
+
+
+
+
+
+
+
     
  ?>
+
+
 
 
 
@@ -132,7 +159,7 @@
                     
                     <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Destinazione: </label>
-                        <div class="wrapper">
+                        <div class="">
                             <select name="id_destinazione" class="form-control" onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();' required>
 
                                 <option value="">Seleziona Destinazione</option>
@@ -148,9 +175,15 @@
 
                                 <?php endwhile; ?>
                             </select>
-                        </div>   
+                        </div>    
+
+
                     </div>
                     
+                   
+                    
+             
+
                      <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Acconto: </label>
                         <input type="number" name="acconto" class="form-control" placeholder="" 
@@ -160,15 +193,20 @@
                         required>
                     </div>
 
-    
+                
+                    
+
+
                     <div class="col-md-2">
                         <label style="font-weight: 600;" for="">Assicurazione: </label>
                         
                         <!--Logica ternaria dato assicurazione booleano/ tinyInt su Mysql trattato come int in php-->
                         <input type="checkbox"  name="assicurazione" 
                         
+                        
                         value="1" <?= ($prenotazione_modifica['assicurazione'] ?? 0) ? '' : ''?>>
                         
+                      
                     </div>
                     
                     
@@ -187,6 +225,9 @@
             </form>
         </div>
     </div>
+
+
+
 
     <!--Tabella-->
     <table class="table table-striped">
@@ -227,11 +268,14 @@
                     </td>
                 </tr>
 
+
             <?php endwhile; ?>
 
         </tbody>
 
     </table>
+
+
 
     <!--Paginazione-->
     <nav>
@@ -246,7 +290,9 @@
 
             <?php endfor; ?>
 
+
+
         </ul>
     </nav>
 
-<?php include 'footer.php';
+<?php include 'footer.php'; ?>
