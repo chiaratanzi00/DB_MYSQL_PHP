@@ -20,10 +20,10 @@
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['aggiungi'])){
 
         //Preparo lo stato stmt -> statement 
-        $stmt = $conn->prepare("INSERT INTO prenotazioni (id_cliente, id_destinazione, data_prenotazione, acconto, assicurazione) 
-                                VALUES  (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO prenotazioni (id_cliente, id_destinazione, acconto, assicurazione) 
+                                VALUES  (?, ?, ?, ?)");
         //Binding dei parametri e tipizzo
-        $stmt->bind_param("iisii", $_POST['id_cliente'], $_POST['id_destinazione'], $_POST['data_prenotazione'],$_POST['acconto'],$_POST['assicurazione']);
+        $stmt->bind_param("iiii", $_POST['id_cliente'], $_POST['id_destinazione'],$_POST['acconto'],$_POST['assicurazione']);
         
         //eseguo lo statement
         $stmt->execute();
@@ -182,14 +182,7 @@
                     
                    
                     
-                    <div class="col-md-6">
-                        <label style="font-weight: 600;" for="">Data Prenotazione: </label>
-                        <input type="date" name="data_prenotazione" class="form-control" placeholder="" 
-                        
-                        value="<?= $prenotazione_modifica['data_prenotazione'] ?? ''?>"
-                        
-                        required>
-                    </div>
+             
 
                      <div class="col-md-6">
                         <label style="font-weight: 600;" for="">Acconto: </label>
@@ -246,7 +239,7 @@
                 <th>ID</th>
                 <th>Cliente</th>
                 <th>Destinazione</th>
-                <th>Data</th>
+                <th>Data di Prenotazione</th>
                 <th>Acconto</th>
                 <th>Assicurazione</th>
                 <th>Azioni</th>
@@ -302,4 +295,4 @@
         </ul>
     </nav>
 
-<?php include 'footer.php'; ?>
+<?php include 'footer.php';

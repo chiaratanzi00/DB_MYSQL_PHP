@@ -2,15 +2,15 @@
 
 
 
-    <div class="text-center py-4">
+    <div class="text-center py-5">
 
-        <h1 class="display-5">Benvenuti nella nostra Trip-Agency</h1>
+        <h1 class="display-5 hero-title">Benvenuti nella nostra Trip-Agency</h1>
         <p class="lead">Esplora le nostre destinazioni, gestisci i clienti e monitora le prenotazioni</p>
 
     </div>
 
 
-    <div class="d-flex justify-content-center align-items-center mb-5 flex-wrap gap-4">
+    <div class="d-flex justify-content-center align-items-center mb-5 flex-wrap gap-4 hero-images">
 
         <img src="img.png" class="img-fluid"  alt="immagine viaggiatore" style="max-height: 300px;">
         <img src="img2.png" class="img-fluid" alt="immagine viaggiatore" style="max-height: 300px;">
@@ -20,7 +20,7 @@
 
 
     <!--SEZIONE CARD-->
-    <div class="row justify-content-center mb-4">
+    <div class="row justify-content-center mb-5 g-4">
 
         <div class="col-md-4">
             <div class="card shadow-sm">
