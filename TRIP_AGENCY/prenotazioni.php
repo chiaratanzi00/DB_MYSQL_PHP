@@ -27,9 +27,10 @@
         
         //eseguo lo statement
         $stmt->execute();
-
         echo "<div class='alert alert-success'>Prenotazione Aggiunta!</div>";
 
+        header("Location: prenotazioni.php");
+        exit;
 
     }
 
@@ -57,7 +58,7 @@
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
 
 
-        $assicurazione = intval($_POST['assicurazione']);
+        $assicurazione = intval($_POST['assicurazione']);//valorizza se vero o falso la presenza assicurazione
 
         //PREPARE
         $stmt = $conn->prepare("UPDATE prenotazioni SET id_cliente=?, id_destinazione=?,  acconto=?, assicurazione=? WHERE id=?");
@@ -67,6 +68,9 @@
         $stmt->execute();
         //messaggio
         echo "<div class='alert alert-info'>Prenotazione Modificata correttamente</div>";
+
+        header("Location: prenotazioni.php");
+        exit;
     }
 
 
@@ -215,13 +219,20 @@
                     
                     <div class="col-md-12">
                         
+                        <!--Pulsante AGGIUNGI-->
                         <button 
                             name="<?= $prenotazione_modifica ? 'salva_modifica' : 'aggiungi' ?>" 
                             class="btn <?= $prenotazione_modifica ? 'btn-warning' : 'btn-success' ?>" 
                             type="submit">
                             <?= $prenotazione_modifica ? 'Salva' : 'Aggiungi' ?>
                         </button>
-                    
+
+                        <!--Pulsante ANNULLA-->
+                        <?php if ($prenotazione_modifica) : ?>
+
+                            <a href="prenotazioni.php" class="btn btn-secondary ms-2">Annulla</a>
+
+                        <?php endif;?>
                     </div>
 
                 </div>
@@ -298,4 +309,6 @@
         </ul>
     </nav>
 
-<?php include 'footer.php' ; ?>
+
+
+<?php include 'footer.php'; ?>
