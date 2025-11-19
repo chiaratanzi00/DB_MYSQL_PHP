@@ -27,9 +27,24 @@
         
         //eseguo lo statement
         $stmt->execute();
-        echo "<div class='alert alert-success'>Prenotazione Aggiunta!</div>";
 
-        header("Location: prenotazioni.php");
+        //Redirect post inserimento, che grazie alla funzione setTimeout di Js, ritarderà il redirect 
+        //verso le prenotazioni
+        echo "<div class='alert alert-info'>Prenotazione Aggiunta correttamente</div>";
+        echo "
+        
+                <script>
+
+                    setTimeout(function () {
+
+                        window.location.href = 'prenotazioni.php'
+
+                    }, 2500);
+
+                </script>
+        
+
+             ";
         exit;
 
     }
@@ -67,9 +82,24 @@
         //ESECUZIONE QUERY
         $stmt->execute();
         //messaggio
-        echo "<div class='alert alert-info'>Prenotazione Modificata correttamente</div>";
 
-        header("Location: prenotazioni.php");
+        //Redirect post inserimento, che grazie alla funzione setTimeout di Js, ritarderà il redirect 
+        //verso le prenotazioni
+        echo "<div class='alert alert-info'>Prenotazione Modificata correttamente</div>";
+        echo "
+        
+                <script>
+
+                    setTimeout(function () {
+
+                        window.location.href = 'prenotazioni.php'
+
+                    }, 2500);
+
+                </script>
+        
+             ";
+
         exit;
     }
 
@@ -108,16 +138,7 @@
     $stmt->execute();
     $result = $stmt->get_result();
 
-
-
-
-
-
-
-
-
-    
- ?>
+?>
 
 
 
@@ -308,7 +329,5 @@
 
         </ul>
     </nav>
-
-
 
 <?php include 'footer.php'; ?>
