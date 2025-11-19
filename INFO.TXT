@@ -237,3 +237,7 @@ SELECT
     JOIN METODO
     Clienti Prenotazioni.ID_CLIENTE = CLIENTE.ID
     Destinazioni Prenotazioni.ID_DESTINAZIONE = DESTINAZIONE.ID
+
+
+
+

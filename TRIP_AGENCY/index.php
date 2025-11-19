@@ -25,7 +25,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-body text-center">
-                   <h5 class="card-title">Clienti</h5>
+                   <h5 class="card-title">👥 Clienti</h5>
                    <p class="card-text">Gestisci le informazioni dei tuoi clienti</p>
                    <a href="clienti.php" class="btn btn-primary">Vai ai Clienti</a>
                 </div>
@@ -35,7 +35,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-body text-center">
-                   <h5 class="card-title">Destinazioni</h5>
+                   <h5 class="card-title">🌍 Destinazioni</h5>
                    <p class="card-text">Consulta o aggiungi nuove mete turistiche</p>
                    <a href="destinazioni.php" class="btn btn-success">Vai alle Destinazioni</a>
                 </div>
@@ -45,7 +45,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <div class="card-body text-center">
-                   <h5 class="card-title">Prenotazioni</h5>
+                   <h5 class="card-title"> 📅 Prenotazioni</h5>
                    <p class="card-text">Visualizza e registra le prenotazioni dei tuoi clienti</p>
                    <a href="prenotazioni.php" class="btn btn-warning">Vai alle prenotazioni</a>
                 </div>

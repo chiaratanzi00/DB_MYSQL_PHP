@@ -8,8 +8,11 @@ html, body {
 
 body{
 
-    background-color: antiquewhite;
+    background-color :#fdcc7d;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     
 }
 
@@ -29,7 +32,7 @@ h1, h2, h3 {
 
 .navbar{
 
-    box-shadow: 0, 2px 4px rgb(0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -48,23 +51,24 @@ h1, h2, h3 {
 
 .table thead th {
 
-    font-weight: 200;
+    font-weight: 600; /* Più leggibile */
+    text-transform: uppercase;
     color: #333;
+    font-size: 0.85rem;
 }
-
-
 
 
 footer{
 
     margin-top: auto;
+    
 }
 
 
 /*Wrapper per select-option Destinazioni */
 .wrapper{
     
-    width:200px;
-    padding:20px;
-    height: 150px;
+    width: 100%;
+    max-width: 250px; /* Responsive */
+    min-height: 150px; /* Flessibile */
 }
