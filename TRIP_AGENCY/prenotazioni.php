@@ -56,6 +56,7 @@
     //MODIFICA DEL DATO, SALVATAGGIO 
     if($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['salva_modifica'])){
 
+
         $assicurazione = intval($_POST['assicurazione']);
 
         //PREPARE
@@ -200,17 +201,17 @@
                         <label style="font-weight: 600;" for="">Assicurazione: </label>
                         
                         <!--Logica ternaria dato assicurazione booleano/ tinyInt su Mysql trattato come int in php-->
+                        
                         <select name="assicurazione" id="" class="form-select" required>
 
-                        <option value="1"<?= ($prenotazione_modifica && $prenotazione_modifica['assicurazione']) == 1 ? 'selected' : ''?>>SI</option>
-                        <option value="0"<?= ($prenotazione_modifica && $prenotazione_modifica['assicurazione']) == 0 ? 'selected' : ''?>>NO</option>              
+                            <option value="1"<?= ($prenotazione_modifica && $prenotazione_modifica['assicurazione']) == 1 ? 'selected' : '' ?>>SI</option>
+                            <option value="0"<?= ($prenotazione_modifica && $prenotazione_modifica['assicurazione']) == 0 ? 'selected' : '' ?>>NO</option>
+
+                        </select>
                         
-                    </select>
-                       
+                      
                     </div>
                     
-
-
                     
                     <div class="col-md-12">
                         
@@ -297,4 +298,4 @@
         </ul>
     </nav>
 
-<?php include 'footer.php'; ?>
+<?php include 'footer.php' ; ?>
