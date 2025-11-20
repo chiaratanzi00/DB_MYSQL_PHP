@@ -1,3 +1,13 @@
+<?php
+
+    //RECUPERO IL NOME DELLA PAGINA CORRENTE
+    $currentPage = basename($_SERVER['PHP_SELF']);
+    //questo restituisce  : clienti.php, destinazioni.php...
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -6,9 +16,9 @@
     <title>TRIP_AGENCY</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js" integrity="sha512-n/G+dROKbKL3GVngGWmWfwK0yPctjZQM752diVYnXZtD/48agpUKLIn0xDQL9ydZ91x6BiOmTIFwWjjFi2kEFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0081a7">
@@ -34,14 +44,17 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav ms-auto">
+
+
+        <div class="collapse navbar-collapse align-items-end" id="navbarNav">
+            <div class="navbar-nav ms-auto align-items-end item_right">
                 <!--Link del menu-->
-                <a href="clienti.php" class="nav-link">Clienti</a>
-                <a href="destinazioni.php" class="nav-link">Destinazioni</a>
-                <a href="prenotazioni.php" class="nav-link">Prenotazioni</a>
-                <a href="ricerca.php" class="nav-link">Ricerca</a>
-                <a href="statistiche.php" class="nav-link">Statistiche</a>
+
+                <a href="clienti.php" class="nav-link <?= $currentPage === 'clienti.php' ? 'active' : '' ?>">Clienti</a>
+                <a href="destinazioni.php" class="nav-link <?= $currentPage === 'destinazioni.php' ? 'active' : '' ?>">Destinazioni</a>
+                <a href="prenotazioni.php" class="nav-link <?= $currentPage === 'prenotazioni.php' ? 'active' : '' ?>">Prenotazioni</a>
+                <a href="ricerca.php" class="nav-link <?= $currentPage === 'ricerca.php' ? 'active' : '' ?>">Ricerca</a>
+                <a href="statistiche.php" class="nav-link <?= $currentPage === 'statistiche.php' ? 'active' : '' ?>">Statistiche</a>
 
             </div>
         </div>

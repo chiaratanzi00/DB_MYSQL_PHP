@@ -2,11 +2,6 @@
 include 'header.php'; 
 include 'db.php'; 
 
-// Logica per impaginazione
-$perPagina = 5;
-$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
-$offset = ($page - 1) * $perPagina;
-
 // recuperare i valori del form tramite get
 // $_GET['nome'] contiene i valori inviati dal form tramite GET
 // ?? '' significa se il valore non esiste, uso una stringa vuota.
@@ -20,12 +15,12 @@ $posti_disponibili = $_GET['posti_disponibili'] ?? '';
 
 
 // aggiungo i vari filtri
-
 // $where conterrà le condizioni SQL (es. "citta LIKE ?")
-$where = [];
 // $params contiene i valori da inserire nei ? in ordine.
-$params = [];
 // $types → stringa usata da bind_param() (s=stringa, i=intero).
+
+$where = [];
+$params = [];
 $types = "";
 
 
@@ -66,23 +61,57 @@ if ($data_ritorno !== '') {
 // Prezzo minimo
 if ($prezzo_minimo !== '') {
     $where[] = "prezzo >= ?";
-    $params[] = $prezzo_minimo;
+    $params[] = (int)$prezzo_minimo;
     $types .= "i";
 }
 
 // Prezzo massimo
 if ($prezzo_massimo !== '') {
     $where[] = "prezzo <= ?";
-    $params[] = $prezzo_massimo;
+    $params[] = (int)$prezzo_massimo;
     $types .= "i";
 }
 
 // Posti disponibili
 if ($posti_disponibili !== '') {
     $where[] = "posti_disponibili >= ?";
-    $params[] = $posti_disponibili;
+    $params[] = (int)$posti_disponibili;
     $types .= "i";
 }
+
+
+// --------- Costruzione query
+$query = "SELECT * FROM destinazioni";
+
+if (!empty($where)) {
+    $query .= " WHERE " . implode(" AND ", $where);
+}
+
+
+// (solo se usi paginazione)
+$perPagina = 10;
+$offset = 0;
+
+$query .= " ORDER BY data_partenza ASC LIMIT $perPagina OFFSET $offset";
+
+
+// PREPARAZIONE
+$stmt = $conn->prepare($query);
+
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+
+$stmt->execute();
+$result = $stmt->get_result();
+
+
+
+
+
+
+
+
 
 
 ?>
@@ -168,6 +197,35 @@ if ($posti_disponibili !== '') {
         </thead>
 
         <tbody>
+
+        <?php while($row = $result->fetch_assoc()): ?>
+        <tr>
+            <td><?= $row['id'] ?></td>
+
+            <td><?= htmlspecialchars($row['citta']) ?></td>
+
+            <td><?= htmlspecialchars($row['paese']) ?></td>
+
+            <td><?= number_format($row['prezzo'], 2, ',', '.') ?> €</td>
+
+            <td><?= date('d/m/Y', strtotime($row['data_partenza'])) ?></td>
+
+            <td><?= date('d/m/Y', strtotime($row['data_ritorno'])) ?></td>
+
+            <td><?= $row['posti_disponibili'] ?></td>
+        </tr>
+ 
+        <?php endwhile; ?>
+
+        <!-- QUI VA IL MESSAGGIO SE NON CI SONO RISULTATI -->
+        <?php if ($result->num_rows === 0): ?>
+        <tr>
+            <td colspan="7" class="text-center text-muted">
+                Nessuna destinazione trovata con questi filtri.
+            </td>
+        </tr>
+    
+        <?php endif; ?>
 
   
     

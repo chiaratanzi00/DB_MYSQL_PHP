@@ -8,5 +8,5 @@ cosa posso RICERCARE nel file RICERCA ?
 - data ritorno
 - posti disponibili (Posti ancora disponibili?)
 
-se prenoto un viaggio ad esempio a TORINO e i posti disponibili sono un 15 quindi in ricerca destinazione DOVREBBE essere 14, come lo traduco in codice?
+
 
