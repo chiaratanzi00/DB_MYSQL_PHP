@@ -1,10 +1,13 @@
-# Agenzia di viaggi con MySQL
+# Trip-Agency 
 
+##  Gestione Clienti, Destinazioni e Prenotazioni
 
+### Benvenuto in Trip-Agency, una web-app sviluppata in PHP con database MySQL per la gestione di un’agenzia di viaggi.
 
 *Novembre 2025* 
 
 *Corso di full stack*  
+
 🧑‍💻 
 
 ---
@@ -33,3 +36,4 @@
 
 Avviare XAMPP
 Start APACHE SERVER
+Aprire VsCode
