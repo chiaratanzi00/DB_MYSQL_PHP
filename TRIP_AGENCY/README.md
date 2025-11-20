@@ -9,11 +9,11 @@
 
 ---
 
-![Screenshot dell app](./imgages/screenshot1.png)
+![Screenshot dell app](./images/screenshot1.png)
 
-![Screenshot dell app](./imgages/screenshot2.png)
+![Screenshot dell app](./images/screenshot2.png)
 
-![Screenshot dell app](./imgages/screenshot3.png)
+![Screenshot dell app](./images/screenshot3.png)
 
 
 
